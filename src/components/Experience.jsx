@@ -6,9 +6,24 @@ const Experience = () => {
   const [activeCategory, setActiveCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const categories = ['All', 'Marketing', 'SEO', 'AI', 'Data', 'Leadership']
+  const categories = ['All', 'Engineering', 'AI', 'Data', 'Marketing', 'SEO', 'Leadership']
 
   const jobs = [
+    {
+      company: 'Mollahs IT',
+      role: 'Full Stack Developer',
+      period: 'May 2025 - Present',
+      location: 'Dhaka, Bangladesh',
+      categories: ['Engineering', 'AI', 'Data'],
+      aiWin: 'Engineered an automated CI/CD pipeline integrated with AI-driven code analysis, reducing deployment errors by 35% and accelerating feature delivery cycles.',
+      tasks: [
+        'Architected and deployed scalable full-stack web applications using React, Next.js, and Node.js.',
+        'Developed and maintained robust RESTful APIs and integrated third-party services.',
+        'Optimized database performance and schema design for high availability.',
+        'Translated design wireframes into responsive, high-performance front-end interfaces.',
+        'Implemented secure authentication and authorization protocols.'
+      ]
+    },
     {
       company: 'Hi-Tech Professionals',
       role: 'Digital Media Assistant',

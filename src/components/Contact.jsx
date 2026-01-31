@@ -17,18 +17,42 @@ const Contact = () => {
             event_category: 'Form',
             event_label: 'Contact Form Attempt'
         })
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        setStatus('success')
-        window.dataLayer = window.dataLayer || []
-        window.dataLayer.push({
-            event: 'portfolio_interaction',
-            event_category: 'Form',
-            event_label: 'Contact Form Success'
-        })
-        setFormData({ name: '', email: '', message: '' })
 
-        setTimeout(() => setStatus('idle'), 5000)
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/Fahimshahrier32@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    _subject: `New Portfolio Message from ${formData.name}`,
+                    _template: "table"
+                })
+            });
+
+            if (response.ok) {
+                setStatus('success')
+                window.dataLayer = window.dataLayer || []
+                window.dataLayer.push({
+                    event: 'portfolio_interaction',
+                    event_category: 'Form',
+                    event_label: 'Contact Form Success'
+                })
+                setFormData({ name: '', email: '', message: '' })
+                setTimeout(() => setStatus('idle'), 5000)
+            } else {
+                alert("Something went wrong. Please try again.")
+                setStatus('idle')
+            }
+        } catch (error) {
+            console.error("Form error:", error)
+            alert("Something went wrong. Please check your connection.")
+            setStatus('idle')
+        }
     }
 
     const handleChange = (e) => {
